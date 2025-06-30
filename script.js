@@ -19,6 +19,8 @@ buttons[0].style.backgroundColor='white';
 const resetBg = ()=>{
     buttons.forEach((button)=>{
         button.style.backgroundColor='transparent';
+        button.addEventListener('mouseover', stopSlideShow);
+        button.addEventListener('mouseout', startSlideShow);
     })
 }
 
@@ -63,5 +65,31 @@ left.addEventListener('click',()=>{
     changeColor();
 })
 
+//Auto playing slide
+
+let slideInterval;
+
+const startSlideShow = ()=>{
+    slideInterval = setInterval(()=>{
+        nextImage();
+        changeColor();
+    },1500)
+}
+startSlideShow();
+
+let stopSlideShow = ()=>{
+    clearInterval(slideInterval);
+};
+
+slider.addEventListener('mouseover', stopSlideShow);
+slider.addEventListener('mouseout', startSlideShow);
+
+
+right.addEventListener('mouseover', stopSlideShow);
+right.addEventListener('mouseout', startSlideShow);
+
+
+left.addEventListener('mouseover', stopSlideShow);
+left.addEventListener('mouseout', startSlideShow);
 
 
